@@ -35,53 +35,14 @@ Error generating stack: `+o.message+`
   </style>
   <script>
   (function(){
-    // Natural scale, no shrinking, no cropping — content always fills the
-    // box edge-to-edge. We move through it ourselves (slow, held pauses at
-    // the ends) instead of requiring the visitor to scroll it manually.
+    // Static — stays on the first frame, natural scale, no movement.
+    // Just block manual scroll so a visitor can't drag it around.
     function block(e){ e.preventDefault(); }
     window.addEventListener('wheel', block, {passive:false});
     window.addEventListener('touchmove', block, {passive:false});
     window.addEventListener('keydown', function(e){
       if([32,33,34,35,36,37,38,39,40].indexOf(e.keyCode) > -1) e.preventDefault();
     }, false);
-
-    var DURATION = 34000;   // ms — slow, unhurried pass through everything
-    var HOLD_START = 1500;  // pause on the first frame before moving
-    var HOLD_END = 2500;    // pause on the last frame before looping back
-    var raf;
-
-    function easeInOutSine(t){ return -(Math.cos(Math.PI*t)-1)/2; }
-
-    function run(){
-      var maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      if (maxScroll <= 0) return; // content already fits the box, nothing to move
-
-      var start = null;
-      function frame(ts){
-        if (start === null) start = ts;
-        var elapsed = ts - start;
-
-        if (elapsed < HOLD_START) {
-          window.scrollTo(0, 0);
-        } else if (elapsed < HOLD_START + DURATION) {
-          var t = (elapsed - HOLD_START) / DURATION;
-          window.scrollTo(0, Math.round(easeInOutSine(t) * maxScroll));
-        } else if (elapsed < HOLD_START + DURATION + HOLD_END) {
-          window.scrollTo(0, maxScroll);
-        } else {
-          start = ts; // loop back to the start and play again
-          window.scrollTo(0, 0);
-        }
-        raf = requestAnimationFrame(frame);
-      }
-      raf = requestAnimationFrame(frame);
-    }
-
-    if (document.readyState === 'complete') {
-      setTimeout(run, 400);
-    } else {
-      window.addEventListener('load', function(){ setTimeout(run, 400); });
-    }
   })();
   </script>
 </body>
