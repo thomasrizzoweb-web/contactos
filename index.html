@@ -3,7 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ContactOS</title>
+<title>ContactOS — Sistemi digitali su misura per attività locali</title>
+<meta name="description" content="ContactOS costruisce sistemi digitali su misura per attività locali: risposte automatiche, gestione contatti e recupero clienti persi, senza cambiare gli strumenti che usi già.">
+<link rel="canonical" href="https://contactos-dusky.vercel.app/">
+<link rel="icon" type="image/png" href="contactos_logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ContactOS — Sistemi digitali su misura per attività locali">
+<meta property="og:description" content="Basta clienti persi mentre lavori. Un sistema che risponde, salva e ricontatta i tuoi clienti in automatico.">
+<meta property="og:image" content="https://contactos-dusky.vercel.app/contactos_logo.png">
+<meta property="og:url" content="https://contactos-dusky.vercel.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ContactOS — Sistemi digitali su misura per attività locali">
+<meta name="twitter:description" content="Basta clienti persi mentre lavori. Un sistema che risponde, salva e ricontatta i tuoi clienti in automatico.">
+<meta name="twitter:image" content="https://contactos-dusky.vercel.app/contactos_logo.png">
 <style>
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -30,6 +42,8 @@
     .rs-hero-solutions { padding-top: 125px !important; padding-bottom: 30px !important; }
     #nav { padding: 9px 14px !important; }
     #nav button { padding: 8px 14px !important; font-size: 13px !important; }
+    .rs-explainer-box { display: none !important; }
+    .rs-explainer-fallback { display: grid !important; }
     .rs-footer-row { flex-direction: column !important; align-items: flex-start !important; }
     .rs-footer-row .rs-tagline { text-align: left !important; }
   }
@@ -408,6 +422,23 @@
       <div class="rs-explainer-box" style="position:relative; width:100%; height:800px; margin-top:44px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#000;">
         <iframe src="explainer.html" title="Come funziona ContactOS" loading="lazy" allow="autoplay" style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
       </div>
+      <div class="rs-explainer-fallback" style="display:none; grid-template-columns:1fr; gap:22px; margin-top:44px;">
+        <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:30px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:800; font-size:20px; color:#2f6bff;">01</div>
+          <div style="font-weight:700; font-size:20px; margin-top:14px;">Colleghi i tuoi canali</div>
+          <div style="color:#9aa3b2; font-size:15px; line-height:1.6; margin-top:10px;">Email, telefono, WhatsApp e form del sito: tutto entra in un unico posto, senza cambiare i tuoi strumenti.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:30px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:800; font-size:20px; color:#2f6bff;">02</div>
+          <div style="font-weight:700; font-size:20px; margin-top:14px;">Il sistema risponde e organizza</div>
+          <div style="color:#9aa3b2; font-size:15px; line-height:1.6; margin-top:10px;">Risposte automatiche immediate, contatti salvati e attività assegnate al team senza sforzo manuale.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:30px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:800; font-size:20px; color:#2f6bff;">03</div>
+          <div style="font-weight:700; font-size:20px; margin-top:14px;">Recuperi i clienti persi</div>
+          <div style="color:#9aa3b2; font-size:15px; line-height:1.6; margin-top:10px;">Chi non risponde viene ricontattato in automatico, al momento giusto, con il messaggio giusto.</div>
+        </div>
+      </div>
     </section>
 
     <section id="cosa-gestisce" data-reveal="" style="opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; max-width:1200px; margin:0 auto; padding:60px 40px;">
@@ -475,7 +506,7 @@
         <div style="display:flex; align-items:center; gap:10px;"><img src="contactos_logo.png" alt="ContactOS" style="height:28px; width:auto; display:block;"><span style="font-family:'Archivo',sans-serif; font-weight:800; font-size:20px;">ContactOS</span></div>
         <div class="rs-tagline" style="color:#7b828f; font-size:14px; line-height:1.6; max-width:340px; text-align:right;">Sistemi operativi su misura per attività locali. Nessun cliente perso, mai più.</div>
       </div>
-      <div style="max-width:1200px; margin:32px auto 0; border-top:1px solid rgba(255,255,255,.06); padding-top:24px; color:#52585f; font-size:13px;">© 2026 ContactOS · Sistemi operativi su misura per attività locali.</div>
+      <div style="max-width:1200px; margin:32px auto 0; border-top:1px solid rgba(255,255,255,.06); padding-top:24px; color:#52585f; font-size:13px;">© 2026 ContactOS · Sistemi operativi su misura per attività locali. · <a href="privacy.html" style="color:#7a8290;">Privacy Policy</a></div>
     </footer>
   </div>
 
@@ -597,7 +628,7 @@
         <div style="display:flex; align-items:center; gap:10px;"><img src="contactos_logo.png" alt="ContactOS" style="height:28px; width:auto; display:block;"><span style="font-family:'Archivo',sans-serif; font-weight:800; font-size:20px;">ContactOS</span></div>
         <div class="rs-tagline" style="color:#7b828f; font-size:14px; line-height:1.6; max-width:340px; text-align:right;">Sistemi operativi su misura per attività locali. Nessun cliente perso, mai più.</div>
       </div>
-      <div style="max-width:1200px; margin:40px auto 0; border-top:1px solid rgba(255,255,255,.06); padding-top:24px; color:#52585f; font-size:13px;">© 2026 ContactOS · Sistemi operativi su misura per attività locali.</div>
+      <div style="max-width:1200px; margin:40px auto 0; border-top:1px solid rgba(255,255,255,.06); padding-top:24px; color:#52585f; font-size:13px;">© 2026 ContactOS · Sistemi operativi su misura per attività locali. · <a href="privacy.html" style="color:#7a8290;">Privacy Policy</a></div>
     </footer>
   </div>
 
