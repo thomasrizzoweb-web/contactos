@@ -35,7 +35,9 @@ Error generating stack: `+o.message+`
   </style>
   <script>
   (function(){
-    // Block any manual scroll input — this is meant to be seen whole, never scrolled.
+    // Natural scale, no shrinking, no cropping — content always fills the
+    // box edge-to-edge. We move through it ourselves (slow, held pauses at
+    // the ends) instead of requiring the visitor to scroll it manually.
     function block(e){ e.preventDefault(); }
     window.addEventListener('wheel', block, {passive:false});
     window.addEventListener('touchmove', block, {passive:false});
@@ -43,55 +45,42 @@ Error generating stack: `+o.message+`
       if([32,33,34,35,36,37,38,39,40].indexOf(e.keyCode) > -1) e.preventDefault();
     }, false);
 
-    var BREATH_AMOUNT = 0.015; // subtle 1.5% breathing pulse, purely decorative
-    var BREATH_PERIOD = 6000;  // ms per full in-out cycle
+    var DURATION = 34000;   // ms — slow, unhurried pass through everything
+    var HOLD_START = 1500;  // pause on the first frame before moving
+    var HOLD_END = 2500;    // pause on the last frame before looping back
     var raf;
 
-    function fitAndReveal(){
-      // Jump once to the fully-scrolled state so every scroll-triggered
-      // reveal animation in the page has already played out — nothing
-      // stays hidden/faded waiting for a scroll that will never happen.
-      var contentHeight = document.documentElement.scrollHeight;
-      var boxHeight = window.innerHeight;
-      window.scrollTo(0, Math.max(0, contentHeight - boxHeight));
+    function easeInOutSine(t){ return -(Math.cos(Math.PI*t)-1)/2; }
 
-      // Re-measure after the jump (some layouts change height once
-      // revealed) and scale the whole page down so it fits entirely
-      // inside the box — no scrolling, everything visible at once.
-      requestAnimationFrame(function(){
-        contentHeight = document.documentElement.scrollHeight;
-        var scale = contentHeight > boxHeight ? boxHeight / contentHeight : 1;
-        document.body.style.transformOrigin = 'top center';
-        document.body.style.willChange = 'transform';
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
+    function run(){
+      var maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      if (maxScroll <= 0) return; // content already fits the box, nothing to move
 
-        var start = null;
-        function frame(ts){
-          if (start === null) start = ts;
-          var t = ((ts - start) % BREATH_PERIOD) / BREATH_PERIOD;
-          var breathe = 1 + BREATH_AMOUNT * Math.sin(t * Math.PI * 2);
-          document.body.style.transform = 'scale(' + (scale * breathe) + ')';
-          raf = requestAnimationFrame(frame);
+      var start = null;
+      function frame(ts){
+        if (start === null) start = ts;
+        var elapsed = ts - start;
+
+        if (elapsed < HOLD_START) {
+          window.scrollTo(0, 0);
+        } else if (elapsed < HOLD_START + DURATION) {
+          var t = (elapsed - HOLD_START) / DURATION;
+          window.scrollTo(0, Math.round(easeInOutSine(t) * maxScroll));
+        } else if (elapsed < HOLD_START + DURATION + HOLD_END) {
+          window.scrollTo(0, maxScroll);
+        } else {
+          start = ts; // loop back to the start and play again
+          window.scrollTo(0, 0);
         }
         raf = requestAnimationFrame(frame);
-      });
+      }
+      raf = requestAnimationFrame(frame);
     }
 
-    var resizeTimer;
-    window.addEventListener('resize', function(){
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function(){
-        if (raf) cancelAnimationFrame(raf);
-        document.body.style.transform = 'none';
-        fitAndReveal();
-      }, 200);
-    });
-
     if (document.readyState === 'complete') {
-      setTimeout(fitAndReveal, 500);
+      setTimeout(run, 400);
     } else {
-      window.addEventListener('load', function(){ setTimeout(fitAndReveal, 500); });
+      window.addEventListener('load', function(){ setTimeout(run, 400); });
     }
   })();
   </script>
