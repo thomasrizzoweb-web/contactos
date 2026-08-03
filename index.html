@@ -898,6 +898,10 @@ function scrollToFeatures() {
   });
 }
 
+// URL Web App Google Apps Script (Estensioni > Apps Script > Deploy > Web app).
+// Vuoto = nessun invio a Sheets, il form continua a funzionare solo via email.
+const SHEETS_ENDPOINT = '';
+
 async function inviaPrenotazione(event, inputId, statusId) {
   event.preventDefault();
   const input = document.getElementById(inputId);
@@ -923,6 +927,13 @@ async function inviaPrenotazione(event, inputId, statusId) {
   } catch (err) {
     status.textContent = 'Errore invio. Riprova o scrivi a thomasrizzo.web@gmail.com';
     status.style.color = '#f87171';
+  }
+  if (SHEETS_ENDPOINT) {
+    fetch(SHEETS_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ email: email, canale: 'sito', fonte: inputId, stato: 'nuovo' })
+    }).catch(function () {});
   }
   return false;
 }
