@@ -19,7 +19,7 @@ const cspHeader = `
   object-src 'none';
   base-uri 'self';
   form-action 'self';
-  frame-ancestors 'none';
+  frame-ancestors 'self';
   upgrade-insecure-requests;
 `
   .replace(/\s{2,}/g, " ")
@@ -32,7 +32,12 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: [
           { key: "Content-Security-Policy", value: cspHeader },
-          { key: "X-Frame-Options", value: "DENY" },
+          // SAMEORIGIN (non DENY): la sezione "Come funziona" incorpora
+          // /explainer.html in un iframe dello stesso dominio. DENY blocca
+          // anche il proprio sito, non solo terzi (bug reale riscontrato:
+          // il player restava vuoto). frame-ancestors 'self' nella CSP sopra
+          // fa la stessa cosa per i browser moderni; questo è il fallback.
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
