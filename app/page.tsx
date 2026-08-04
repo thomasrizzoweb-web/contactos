@@ -225,18 +225,14 @@ export default function HomePage() {
         </div>
       </Reveal>
 
-      {/* TESTIMONIAL */}
+      {/* PROBLEMA (non più un finto testimonial — nessun cliente/nome inventato) */}
       <Reveal as="section" style={{ maxWidth: 900, margin: "0 auto", padding: "70px 40px", textAlign: "center" }}>
         <div style={{ fontFamily: "var(--font-archivo)", fontWeight: 700, fontSize: "clamp(26px,3.2vw,40px)", lineHeight: 1.3, letterSpacing: "-.02em" }}>
-          &ldquo;Prima rispondevo ai messaggi la sera, quando ormai era tardi. Con ContactOS ogni richiesta viene
-          gestita subito. Ho recuperato clienti che davo per persi.&rdquo;
+          &ldquo;Rispondere ai messaggi la sera, quando ormai è tardi, costa clienti. Con ContactOS ogni richiesta
+          viene gestita subito, così non se ne perde più nessuna.&rdquo;
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 28 }}>
-          <div style={{ width: 44, height: 44, borderRadius: "50%", background: "linear-gradient(135deg,#4f8bff,#1e40af)" }} />
-          <div style={{ textAlign: "left" }}>
-            <div style={{ fontWeight: 700, fontSize: 15 }}>Marco Bianchi</div>
-            <div style={{ color: "#9aa3b2", fontSize: 13 }}>Titolare, Officina MB</div>
-          </div>
+        <div style={{ color: "#9aa3b2", fontSize: 14, marginTop: 20 }}>
+          Il problema che ContactOS risolve per chi gestisce un&apos;attività locale.
         </div>
       </Reveal>
 
