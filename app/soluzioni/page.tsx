@@ -100,7 +100,10 @@ export default function SoluzioniPage() {
                 display: "inline-block",
               }}
             >
-              Prenota una consulenza →
+              Entra in lista d&apos;attesa →
+            </Link>
+            <Link href="/#prenota-consulenza" style={{ fontWeight: 600, fontSize: 15 }}>
+              Vedi i prezzi →
             </Link>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 30 }}>
@@ -175,7 +178,7 @@ export default function SoluzioniPage() {
               display: "inline-block",
             }}
           >
-            Vedi come funziona →
+            Vedi i piani →
           </Link>
         </Reveal>
       </section>

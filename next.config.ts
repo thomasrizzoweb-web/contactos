@@ -3,12 +3,14 @@ import type { NextConfig } from "next";
 const isDev = process.env.NODE_ENV === "development";
 
 // CSP senza nonce (pagine statiche/ISR restano cacheable). 'unsafe-inline' su
-// style-src è necessario perché il design è portato 1:1 dal sito originale
-// con stili inline; script-src NON ha 'unsafe-inline' — solo domini Google
-// espliciti, usati unicamente se in futuro si attiva reCAPTCHA v3 lato client.
+// script-src è necessario: senza nonce, Next.js inietta lo stream RSC/hydration
+// (self.__next_f / self.__next_r) come <script> inline nell'HTML — bloccarli con
+// CSP fa fallire silenziosamente l'idratazione (pagina statica ma zero JS attivo,
+// bug reale riscontrato in produzione). Vedi guida ufficiale Next.js su CSP
+// "Without Nonces". Stesso discorso per style-src (stili inline nel design).
 const cspHeader = `
   default-src 'self';
-  script-src 'self' https://www.google.com https://www.gstatic.com${isDev ? " 'unsafe-eval'" : ""};
+  script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob:;
   font-src 'self' data:;
