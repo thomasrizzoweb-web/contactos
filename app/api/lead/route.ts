@@ -89,6 +89,15 @@ export async function POST(req: NextRequest) {
     forwardToSheets(lead),
   ]);
 
+  // Log minimo per osservabilità: solo il messaggio d'errore (mai token/secret,
+  // notify-email.ts e sheets.ts restituiscono `error.message`, non le credenziali).
+  if (!emailResult.sent && emailResult.error) {
+    console.error("[lead] notifica email non inviata:", emailResult.error);
+  }
+  if (!sheetsResult.sent && sheetsResult.error) {
+    console.error("[lead] inoltro a Sheets non riuscito:", sheetsResult.error);
+  }
+
   if (!savedToDb && !emailResult.sent && !sheetsResult.sent) {
     return NextResponse.json(
       { ok: false, error: "Errore invio. Riprova o scrivi a thomasrizzo.web@gmail.com" },

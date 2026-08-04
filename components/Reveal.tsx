@@ -15,12 +15,14 @@ export default function Reveal({
   delayMs = 0,
   className,
   style,
+  id,
 }: {
   children: ReactNode;
   as?: keyof React.JSX.IntrinsicElements;
   delayMs?: number;
   className?: string;
   style?: CSSProperties;
+  id?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -48,6 +50,7 @@ export default function Reveal({
   return (
     <Comp
       ref={ref}
+      id={id}
       className={className}
       style={{
         opacity: visible ? 1 : 0,

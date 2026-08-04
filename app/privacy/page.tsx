@@ -55,7 +55,7 @@ export default function PrivacyPage() {
         la registra in un foglio di calcolo interno tramite Google Apps Script, esclusivamente lato server (mai
         esposto al browser). Il sito e il database sono ospitati su{" "}
         <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a> e{" "}
-        <a href="https://neon.tech" target="_blank" rel="noopener noreferrer">Neon</a>. Questi fornitori trattano i
+        <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a>. Questi fornitori trattano i
         dati in qualità di responsabili del trattamento nei limiti necessari a fornire il servizio.
       </p>
 

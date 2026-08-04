@@ -16,7 +16,7 @@ const datasourceUrl =
   "postgresql://unconfigured:unconfigured@localhost:5432/unconfigured";
 
 // Usata solo dalla CLI Prisma (`prisma generate`, `prisma migrate`, `prisma db push`),
-// mai a runtime dall'app (quella usa lib/prisma.ts con l'adapter Neon + DATABASE_URL
+// mai a runtime dall'app (quella usa lib/prisma.ts con l'adapter pg + DATABASE_URL
 // pooled). Le migrazioni richiedono la connessione diretta (non pooled).
 export default defineConfig({
   schema: "prisma/schema.prisma",

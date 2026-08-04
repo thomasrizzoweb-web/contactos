@@ -84,7 +84,7 @@ export default function SoluzioniPage() {
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 22, marginTop: 32 }}>
             <Link
-              href="/#prenota-consulenza"
+              href="#parliamo"
               className="cta-pill"
               style={{
                 border: "none",
@@ -100,10 +100,10 @@ export default function SoluzioniPage() {
                 display: "inline-block",
               }}
             >
-              Entra in lista d&apos;attesa →
+              Prenota una consulenza gratuita →
             </Link>
-            <Link href="/#prenota-consulenza" style={{ fontWeight: 600, fontSize: 15 }}>
-              Vedi i prezzi →
+            <Link href="/#cosa-gestisce" style={{ fontWeight: 600, fontSize: 15 }}>
+              Guarda cosa gestisce →
             </Link>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 30 }}>
@@ -161,7 +161,7 @@ export default function SoluzioniPage() {
             gestione dei contatti, i flussi di lavoro e le risposte, così cresci senza caos.
           </p>
           <Link
-            href="/#prenota-consulenza"
+            href="#parliamo"
             className="cta-pill"
             style={{
               border: "none",
@@ -178,7 +178,7 @@ export default function SoluzioniPage() {
               display: "inline-block",
             }}
           >
-            Vedi i piani →
+            Parliamo della tua attività →
           </Link>
         </Reveal>
       </section>
@@ -254,6 +254,38 @@ export default function SoluzioniPage() {
         </div>
       </Reveal>
 
+      <Reveal as="section" style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 40px 80px" }}>
+        <div style={{ color: "#60a5fa", fontSize: 13, fontWeight: 600, letterSpacing: ".08em", textTransform: "uppercase" }}>
+          Perché ContactOS
+        </div>
+        <h2
+          style={{
+            fontFamily: "var(--font-archivo)",
+            fontWeight: 800,
+            fontSize: "clamp(32px,4vw,52px)",
+            lineHeight: 1.05,
+            letterSpacing: "-.02em",
+            margin: "14px 0 0",
+            maxWidth: 700,
+          }}
+        >
+          Non un altro CRM da imparare. Un sistema che lavora al posto tuo.
+        </h2>
+        <div className="rs-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 20, marginTop: 44 }}>
+          {[
+            ["Su misura, non adattato", "Non parti da un software generico da configurare per mesi: il sistema nasce sui flussi reali della tua attività, fin dal primo giorno."],
+            ["I tuoi dati restano tuoi", "Nessun vendor lock-in, nessuna piattaforma terza che rivende o trattiene i contatti dei tuoi clienti."],
+            ["Operativo in pochi giorni", "Niente mesi di onboarding: consulenza, configurazione, sistema attivo. Lo vedi funzionare quasi subito."],
+            ["Parli con chi lo costruisce", "Nessun ticket, nessun call center: hai un referente diretto che conosce il tuo sistema a memoria."],
+          ].map(([title, body]) => (
+            <div key={title} className="rs-card" style={cardStyle}>
+              <div style={{ fontWeight: 700, fontSize: 18 }}>{title}</div>
+              <div style={{ color: "#9aa3b2", fontSize: 14, lineHeight: 1.6, marginTop: 8 }}>{body}</div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
       <Reveal as="section" style={{ maxWidth: 900, margin: "0 auto", padding: "80px 40px" }}>
         <h2
           style={{
@@ -278,7 +310,7 @@ export default function SoluzioniPage() {
         </div>
       </Reveal>
 
-      <Reveal as="section" style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px" }}>
+      <Reveal as="section" id="parliamo" style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 40px 100px", scrollMarginTop: 40 }}>
         <div
           style={{
             position: "relative",
@@ -316,7 +348,8 @@ export default function SoluzioniPage() {
             Parliamo della tua attività
           </h2>
           <p style={{ position: "relative", color: "#c7ccd6", fontSize: 16, lineHeight: 1.6, maxWidth: 520, margin: "18px auto 0" }}>
-            Una consulenza gratuita di 20 minuti per capire se e come ContactOS può aiutarti.
+            Una consulenza gratuita di 20 minuti per capire se e come ContactOS può aiutarti. Ti rispondiamo
+            entro 24 ore, senza impegno.
           </p>
           <LeadForm variant="band" fonte="solutions-cta-email" />
         </div>

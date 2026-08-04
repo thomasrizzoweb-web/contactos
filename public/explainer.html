@@ -35,14 +35,17 @@ Error generating stack: `+o.message+`
   </style>
   <script>
   (function(){
-    // Static — stays on the first frame, natural scale, no movement.
-    // Just block manual scroll so a visitor can't drag it around.
-    function block(e){ e.preventDefault(); }
-    window.addEventListener('wheel', block, {passive:false});
-    window.addEventListener('touchmove', block, {passive:false});
-    window.addEventListener('keydown', function(e){
-      if([32,33,34,35,36,37,38,39,40].indexOf(e.keyCode) > -1) e.preventDefault();
-    }, false);
+    // Static — stays on first frame, no internal scroll-driven animation.
+    // NOTA: qui c'era un blocco globale di wheel/touchmove/keydown a livello
+    // di window per impedire che un visitatore "trascinasse" il contenuto.
+    // Bug: preventDefault() su un evento wheel/touch dentro l'iframe impedisce
+    // anche lo scroll della pagina che lo ospita (i browser non fanno scroll-
+    // chaining automatico verso il parent frame quando l'evento viene
+    // cancellato dentro l'iframe) — risultato: la pagina si "blocca" non
+    // appena il mouse è sopra questa sezione. Rimosso: il contenuto è statico
+    // e non ha nulla da proteggere da uno scroll accidentale, quindi non
+    // serve intercettare questi eventi. Lo scroll ora passa liberamente al
+    // documento padre come per qualsiasi altro iframe non scrollabile.
   })();
   </script>
 </body>

@@ -1,9 +1,9 @@
 // Prisma schema — ContactOS
-// DB: Neon Postgres (free tier, no carta richiesta) — https://neon.tech
+// DB: Postgres (Supabase free tier, no carta richiesta) — https://supabase.com
 //
 // Prisma 7: le connection string NON stanno più qui, sono in prisma.config.ts
 // (CLI/migrazioni, usa DIRECT_URL) e in lib/prisma.ts via driver adapter
-// @prisma/adapter-neon (runtime app, usa DATABASE_URL pooled).
+// @prisma/adapter-pg (runtime app, usa DATABASE_URL pooled via pgbouncer).
 // Vedi: https://pris.ly/d/config-datasource
 
 generator client {
