@@ -1,0 +1,41 @@
+// Prisma schema — ContactOS
+// DB: Neon Postgres (free tier, no carta richiesta) — https://neon.tech
+//
+// Prisma 7: le connection string NON stanno più qui, sono in prisma.config.ts
+// (CLI/migrazioni, usa DIRECT_URL) e in lib/prisma.ts via driver adapter
+// @prisma/adapter-neon (runtime app, usa DATABASE_URL pooled).
+// Vedi: https://pris.ly/d/config-datasource
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum LeadStatus {
+  nuovo
+  contattato
+  qualificato
+  cliente
+  perso
+}
+
+model Lead {
+  id         String     @id @default(cuid())
+  nome       String?
+  email      String
+  telefono   String?
+  messaggio  String?
+  fonte      String // es. "hero-email", "band-email" — quale form del sito
+  canale     String     @default("sito") // sito, referral, ecc.
+  stato      LeadStatus @default(nuovo)
+  ipHash     String? // hash dell'IP mittente, per audit/rate-limit, mai IP in chiaro
+  userAgent  String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+}
